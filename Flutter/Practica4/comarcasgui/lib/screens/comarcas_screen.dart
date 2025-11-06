@@ -1,4 +1,4 @@
-import 'package:comarcasgui/repository/repository_ejemplo0.dart';
+import 'package:comarcasgui/repository/repository_ejemplo_antiguo.dart';
 import 'package:flutter/material.dart';
 
 class ComarcasScreen extends StatelessWidget {
@@ -10,7 +10,7 @@ class ComarcasScreen extends StatelessWidget {
       body: Center(
           // Proporciona a _creaLlistaComarques la lista de comarcas de Alacant
           child:
-              _creaListaComarcas(RepositoryEjemplo.obtenerComarcas())), ////
+              _creaListaComarcas(RepositoryEjemploAntiguo.obtenerComarcas())), ////
     );
   }
 
@@ -46,19 +46,21 @@ class ComarcaCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.all(12),
+      margin: const EdgeInsets.all(5),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-      clipBehavior: Clip.antiAlias,
       child: Stack(
         children: [
-          SizedBox(
-            width: double.infinity,
-            height: 180,
-            child: FittedBox(
-              fit: BoxFit.cover,
-              child: Image.network(img),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: SizedBox(
+              width: double.infinity,
+              height: 180,
+              child: Image.network(
+                img,
+                fit: BoxFit.cover, 
+              ),
             ),
           ),
           Positioned(
@@ -75,7 +77,6 @@ class ComarcaCard extends StatelessWidget {
       ),
     );
   }
-
 
   // TO-DO
     // Devuelve un widget de tipo Card, con el diseño que desees, pero

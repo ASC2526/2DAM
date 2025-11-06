@@ -6,7 +6,7 @@ import 'package:comarcasgui/models/provincia.dart';
 Esta clase nos proporciona información estática de ejemplo sobre las provincias y comarcas.
 
  */
-class RepositoryEjemplo{
+class RepositoryEjemploAntiguo{
 
   static List<Provincia> obtenerProvincias(){
     var provincies=[{"provincia":"València","img":"https://upload.wikimedia.org/wikipedia/commons/5/5d/LA_ALBUFERA_DE_VALENCIA_02.jpg"},{"provincia":"Alacant","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Alicante%2C_Spain.jpg/640px-Alicante%2C_Spain.jpg"},{"provincia":"Castelló","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Pe%C3%B1%C3%ADscola_-_aerial_view.jpg/640px-Pe%C3%B1%C3%ADscola_-_aerial_view.jpg"}];

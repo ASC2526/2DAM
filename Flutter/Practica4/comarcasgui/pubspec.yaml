@@ -90,6 +90,7 @@ flutter:
 
   assets:
     - assets/fonts/
+    - assets/icons/png/soleado.png
 
   fonts:
     - family: LeckerliOne

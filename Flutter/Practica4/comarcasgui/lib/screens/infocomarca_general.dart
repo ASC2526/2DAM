@@ -1,6 +1,5 @@
-
 import 'package:comarcasgui/models/comarca.dart';
-import 'package:comarcasgui/repository/repository_ejemplo0.dart';
+import 'package:comarcasgui/repository/repository_ejemplo_antiguo.dart';
 import 'package:flutter/material.dart';
 
 class InfoComarcaGeneral extends StatelessWidget {
@@ -8,52 +7,51 @@ class InfoComarcaGeneral extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Comarca comarca = RepositoryEjemplo.obtenerInfoComarca();
+    Comarca comarca = RepositoryEjemploAntiguo.obtenerInfoComarca();
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             Image.network(comarca.img ?? ""),
-
             const SizedBox(height: 35),
+
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 12),
               child: SizedBox(
                 width: double.infinity,
                 child: Text(
                   comarca.comarca,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontSize: 22,
-                      ),
+                  style: const TextStyle(
+                    fontSize: 28
+                  ),
                   textAlign: TextAlign.left,
                 ),
               ),
             ),
 
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 12, top: 4),
+              padding: const EdgeInsets.only(left: 20, right: 12, top: 5),
               child: SizedBox(
                 width: double.infinity,
                 child: Text(
                   "Capital: ${comarca.capital}",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontSize: 18,
-                      ),
+                  style: const TextStyle(
+                    fontSize: 22
+                  ),
                   textAlign: TextAlign.left,
                 ),
               ),
             ),
 
             Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: SizedBox(
-                width: double.infinity,
-                child: Text(
-                  comarca.desc ?? "",
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  textAlign: TextAlign.left,
+              padding: const EdgeInsets.only(left: 20, right: 12, top: 10),
+              child: Text(
+                comarca.desc ?? "",
+                style: const TextStyle(
+                  fontSize: 18
                 ),
+                textAlign: TextAlign.left,
               ),
             ),
           ],
@@ -68,7 +66,10 @@ class InfoComarcaGeneral extends StatelessWidget {
     // Podéis utilizar los widgets y contenedores que consideréis oportunos (Containers, SingleChildScrollView, Columns, etc)
     // Debéis tener en cuenta no sobrepasar los límites y dibujar fuera del espacio disponible
     // Para comprobar que no os salís, podéis probar a girar el dispositivo (si lo estáis haciendo sobre Android)
+
 }
 
+
+  
 
   

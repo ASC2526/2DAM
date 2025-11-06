@@ -1,5 +1,5 @@
 import 'package:comarcasgui/models/provincia.dart';
-import 'package:comarcasgui/repository/repository_ejemplo0.dart';
+import 'package:comarcasgui/repository/repository_ejemplo.dart';
 import 'package:flutter/material.dart';
 
 /* Pantalla ProvinciasScreen: muestra tres CircleAvatar con las distintas provincias */

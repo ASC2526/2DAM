@@ -1,13 +1,12 @@
+import 'package:comarcasgui/models/comarca.dart';
+import 'package:comarcasgui/models/provincia.dart';
+import 'package:comarcasgui/repository/repository_data.dart';
 
 /* 
     Esta clase accede a la clase RepositoryData para
     obtener la información sobre provincias y comarcas.
 */
-import 'package:comarcasgui/models/comarca.dart';
-import 'package:comarcasgui/models/provincia.dart';
-import 'package:comarcasgui/repository/repository_data.dart';
-
-class RepositoryEjemploAntiguo {
+class RepositoryEjemplo {
   static List<Provincia> obtenerProvincias() {
     // Devuelve una lista de provincias, obtenidas a partir de la propiedad
     // provincies de RepositoryData.
