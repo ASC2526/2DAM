@@ -46,7 +46,16 @@ class RepositoryEjemplo {
     // Recibe el nombre de una comarca (String comarca), y 
     // devuelve un objeto de tipo Comarca, con la  
     // información de la misma.
-
+    for (var p in RepositoryData.provincies) {
+   
+    for (var com in p["comarques"]) {
+      
+      if (com["comarca"] == comarca) {
+        
+        return Comarca.fromJSON(com);
+      }
+    }
+  }
     // TO-DO
     // Recorremos la lista de províncias del RepositoryData.provincies
     //     Dentro de cada província, recorremos la lista de comarques de la misma
@@ -59,5 +68,9 @@ class RepositoryEjemplo {
     // Si no la encuentra devolvemos null
     return null;
   }
+  
+  
+
+
   
 }
