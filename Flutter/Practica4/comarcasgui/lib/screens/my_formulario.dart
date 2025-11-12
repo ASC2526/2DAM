@@ -28,6 +28,8 @@ class _MyFormularioState extends State<MyFormulario> {
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
+
+              // correo
               Row(
                 children: [
                   const Icon(Icons.email_rounded),
@@ -55,7 +57,10 @@ class _MyFormularioState extends State<MyFormulario> {
                   ),
                 ],
               ),
+
               const SizedBox(height: 16),
+
+              // contraseña
               Row(
                 children: [
                   const Icon(Icons.lock),
@@ -80,7 +85,9 @@ class _MyFormularioState extends State<MyFormulario> {
                   ),
                 ],
               ),
+
               const SizedBox(height: 20),
+
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -89,7 +96,7 @@ class _MyFormularioState extends State<MyFormulario> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    const correoValido = "pepito@yahoo.com";
+                    const correoValido = "alejandro@gmail.com";
                     const passwordValida = "1234";
 
                     if (_emailController.text == correoValido &&
@@ -101,11 +108,35 @@ class _MyFormularioState extends State<MyFormulario> {
                         ),
                       );
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Correo o contraseña incorrectos"),
-                          backgroundColor: Colors.redAccent,
-                        ),
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            title: const Text("Error"),
+                            content: const Text(
+                              "El usuario o la contraseña son incorrectas",
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context); 
+                                },
+                                child: const Text("Volver"),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  _emailController.text = correoValido;
+                                  _passwordController.text = passwordValida;
+                                  Navigator.pop(context); 
+                                },
+                                child: const Text("Rellenar usuario"),
+                              ),
+                            ],
+                          );
+                        },
                       );
                     }
                   }

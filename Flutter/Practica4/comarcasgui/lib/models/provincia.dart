@@ -9,7 +9,7 @@ class Provincia {
   */
   Provincia({
     required this.nombre,
-    this.imagen, required nom, required imatge,
+    this.imagen,
   });
 
   /* 

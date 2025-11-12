@@ -13,7 +13,8 @@ class RepositoryEjemplo {
 
     List<Provincia> provincies = [];
     for (var p in RepositoryData.provincies) {
-      provincies.add(Provincia(nom: p["provincia"], imatge: p["img"], nombre: ''));
+      provincies.add(Provincia(
+                      nombre: p["provincia"], imagen: p["img"]));
     }
     return provincies;
   }
@@ -34,7 +35,7 @@ class RepositoryEjemplo {
         // y la imagen de cada comarca
 
         for (var com in p["comarques"]) {
-          comarques.add({"nom": com["comarca"], "img": com["img"]});
+          comarques.add({"comarca": com["comarca"], "img": com["img"]});
         }
       }
     }
@@ -68,9 +69,4 @@ class RepositoryEjemplo {
     // Si no la encuentra devolvemos null
     return null;
   }
-  
-  
-
-
-  
 }

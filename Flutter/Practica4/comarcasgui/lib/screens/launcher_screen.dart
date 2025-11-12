@@ -30,7 +30,7 @@ class LauncherScreen extends StatelessWidget {
                 Navigator.push<void>(
                   context,
                   MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const ComarcasScreen(),
+                    builder: (BuildContext context) => const ComarcasScreen(provincia: 'Alacant',),
                   ),
                 );
               },
@@ -41,7 +41,7 @@ class LauncherScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) =>
-                        const InfoComarcaGeneral(),
+                        const InfoComarcaGeneral(comarcaNom: 'La Marina Alta'),
                   ),
                 );
               },

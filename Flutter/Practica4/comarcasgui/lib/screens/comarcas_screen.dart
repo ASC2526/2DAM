@@ -1,38 +1,83 @@
-import 'package:comarcasgui/repository/repository_ejemplo_antiguo.dart';
 import 'package:flutter/material.dart';
+import 'package:comarcasgui/repository/repository_ejemplo.dart';
+import 'infocomarca_general.dart';
+
+/* 
+  Pantalla ComarcasScreen:
+  Muestra la lista de comarcas de una provincia seleccionada.
+  Al pulsar en una comarca, navegaremos a la pantalla con la información de la misma.
+*/
 
 class ComarcasScreen extends StatelessWidget {
-  const ComarcasScreen({super.key});
+  final String provincia; // <-- parámetro recibido desde la pantalla anterior
+
+  const ComarcasScreen({super.key, required this.provincia});
 
   @override
   Widget build(BuildContext context) {
+    // Obtenemos la lista de comarcas de la provincia seleccionada
+    final List<dynamic> comarques = RepositoryEjemplo.obtenerComarcas(provincia);
+
+    // Si no hay comarcas, mostramos un mensaje
+    if (comarques.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(title: Text('Comarques de $provincia')),
+        body: const Center(
+          child: Text(
+            "No s'han trobat comarques per a aquesta província.",
+            style: TextStyle(fontSize: 18),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
-      body: Center(
-          // Proporciona a _creaLlistaComarques la lista de comarcas de Alacant
-          child:
-              _creaListaComarcas(RepositoryEjemploAntiguo.obtenerComarcas())), ////
+      appBar: AppBar(
+        title: Text('Comarques de $provincia'),
+      ),
+      body: _creaListaComarcas(comarques, context),
     );
   }
 
-  _creaListaComarcas(List<dynamic> comarques) {
+  _creaListaComarcas(List<dynamic> comarques, BuildContext context) {
+    // Generamos una lista de tarjetas (Cards) para cada comarca
     return ListView.builder(
       itemCount: comarques.length,
       itemBuilder: (context, index) {
         final comarca = comarques[index];
-        return ComarcaCard(
-          img: comarca["img"],
-          comarca: comarca["nom"],
+        return GestureDetector(
+          // Al pulsar una comarca, navegamos a su pantalla de información general
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Obrint informació de ${comarca["comarca"]}...'),
+                duration: const Duration(milliseconds: 800),
+              ),
+            );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    InfoComarcaGeneral(comarcaNom: comarca["comarca"]), // ✅ nombre correcto del JSON
+              ),
+            );
+          },
+          child: ComarcaCard(
+            img: comarca["img"],
+            comarca: comarca["comarca"], // ✅ corregido
+          ),
         );
       },
     );
-    // Recibimos la lista de JSON con el nombre y la imagen (img) de cada comarca
-    
-    // TO-DO
-    // Debemos utilizar un ListView.builder para recorrer la lista de comarcas
-    // y generar un widget personalizado de tipo ComarcaCard, con la imagen y el nombre.
   }
 }
 
+/* 
+  Widget ComarcaCard:
+  Representa visualmente cada comarca mediante una Card con su imagen de fondo
+  y el nombre superpuesto con un efecto de sombra.
+*/
 class ComarcaCard extends StatelessWidget {
   const ComarcaCard({
     super.key,
@@ -52,6 +97,7 @@ class ComarcaCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
+          // Imagen de fondo
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: SizedBox(
@@ -59,10 +105,15 @@ class ComarcaCard extends StatelessWidget {
               height: 180,
               child: Image.network(
                 img,
-                fit: BoxFit.cover, 
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) => const Center(
+                  child: Icon(Icons.error, size: 40, color: Colors.red),
+                ),
               ),
             ),
           ),
+
+          // Nombre de la comarca sobre la imagen
           Positioned(
             left: 12,
             bottom: 12,
@@ -70,6 +121,13 @@ class ComarcaCard extends StatelessWidget {
               comarca,
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     fontSize: 20,
+                    color: Colors.white,
+                    shadows: const [
+                      Shadow(
+                        color: Colors.black,
+                        blurRadius: 5,
+                      ),
+                    ],
                   ),
             ),
           ),
@@ -77,9 +135,4 @@ class ComarcaCard extends StatelessWidget {
       ),
     );
   }
-
-  // TO-DO
-    // Devuelve un widget de tipo Card, con el diseño que desees, pero
-    // que muestre la imagen  (obtenida de Internet a partir de la url)
-    // y el nombre de la comarca.
 }
