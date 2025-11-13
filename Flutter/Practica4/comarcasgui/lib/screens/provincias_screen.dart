@@ -1,8 +1,8 @@
 import 'package:comarcasgui/models/provincia.dart';
 import 'package:comarcasgui/repository/repository_ejemplo.dart';
+import 'package:comarcasgui/screens/comarcas_screen.dart';
 import 'package:flutter/material.dart';
 
-/* Pantalla ProvinciasScreen: muestra tres CircleAvatar con las distintas provincias */
 
 class ProvinciasScreen extends StatelessWidget {
   const ProvinciasScreen({super.key});
@@ -16,26 +16,42 @@ class ProvinciasScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children:               // Obtendremos la lista de widgets con las provincias con la 
                                       // función privada _creaListaProvincias.
-                  _creaListaProvincias(RepositoryEjemplo.obtenerProvincias())),
+                  _creaListaProvincias(context, RepositoryEjemplo.obtenerProvincias())),
         ),
       ),
     );
   }
 }
 
-List <Widget> _creaListaProvincias(List<Provincia> provincias) {
-  // Devolveremos una lista de widgets
+List<Widget> _creaListaProvincias(
+    BuildContext context, List<Provincia> provincias) {
   List<Widget> lista = [];
 
-  // Recorremos la lista de provincias
   for (Provincia provincia in provincias) {
-    lista.add( // Y añadimos a la lista un widget personalizado de tipo ProvinciaRoundButton
-        ProvinciaRoundButton(nombre: provincia.nombre, imagen: provincia.imagen ?? ""));
-    lista.add(const SizedBox(height: 20)); // Añadimos un espacio después del widget con la província
+    lista.add(
+      GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => ComarcasScreen(
+                provincia: provincia.nombre,
+              ),
+            ),
+          );
+        },
+        child: ProvinciaRoundButton(
+          nombre: provincia.nombre,
+          imagen: provincia.imagen ?? "",
+        ),
+      ),
+    );
+
+    lista.add(const SizedBox(height: 20));
   }
+
   return lista;
 }
-
 class ProvinciaRoundButton extends StatelessWidget {
   const ProvinciaRoundButton({required this.imagen, required this.nombre, super.key});
 

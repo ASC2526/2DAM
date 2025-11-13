@@ -13,8 +13,7 @@ class RepositoryEjemplo {
 
     List<Provincia> provincies = [];
     for (var p in RepositoryData.provincies) {
-      provincies.add(Provincia(
-                      nombre: p["provincia"], imagen: p["img"]));
+      provincies.add(Provincia(nombre: p["provincia"], imagen: p["img"]));
     }
     return provincies;
   }
@@ -30,12 +29,14 @@ class RepositoryEjemplo {
     // Recorremos la lista de provincies en RepositoryData para encontrar la que se busca
     for (var p in RepositoryData.provincies) {
       if (p["provincia"] == provincia) {
-        // Cuando encontramos la provincia, reocrremos las comarcas
+        // Cuando encontramos la provincia, recorremos las comarcas
         // y añadimos a la lista comarques un JSON con el nombre
         // y la imagen de cada comarca
-
         for (var com in p["comarques"]) {
-          comarques.add({"comarca": com["comarca"], "img": com["img"]});
+          comarques.add({
+            "comarca": com["comarca"],
+            "img": com["img"],
+          });
         }
       }
     }
@@ -43,28 +44,16 @@ class RepositoryEjemplo {
     return comarques;
   }
 
-  static Comarca? obtenerInfoComarca(String comarca) {
-    // Recibe el nombre de una comarca (String comarca), y 
-    // devuelve un objeto de tipo Comarca, con la  
-    // información de la misma.
+  static Comarca? obtenerInfoComarca(String comarcaNombre) {
+    // Recibe el nombre de una comarca (String comarcaNombre), y 
+    // devuelve un objeto de tipo Comarca, con la información de la misma.
     for (var p in RepositoryData.provincies) {
-   
-    for (var com in p["comarques"]) {
-      
-      if (com["comarca"] == comarca) {
-        
-        return Comarca.fromJSON(com);
+      for (var com in p["comarques"]) {
+        if (com["comarca"] == comarcaNombre) {
+          return Comarca.fromJSON(com);
+        }
       }
     }
-  }
-    // TO-DO
-    // Recorremos la lista de províncias del RepositoryData.provincies
-    //     Dentro de cada província, recorremos la lista de comarques de la misma
-    //         Si el nombre de la comarca que buscamos, coincide
-    //         con el nombre de la comarca, devolvemos la comarca.
-    //         Recordemos que se trata de un JSON y que habremos de 
-    //         devolver un objeto de tipo Comarca (rercodad 
-    //         que tenemos el constructor fromJSON)
 
     // Si no la encuentra devolvemos null
     return null;

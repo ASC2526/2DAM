@@ -1,75 +1,79 @@
-import 'package:comarcasgui/models/comarca.dart';
-import 'package:comarcasgui/repository/repository_ejemplo_antiguo.dart';
 import 'package:flutter/material.dart';
+import 'package:comarcasgui/models/comarca.dart';
+import 'package:comarcasgui/repository/repository_ejemplo.dart';
+import 'infocomarca_detall.dart';
+
+/* 
+  Pantalla InfoComarcaGeneral:
+  Muestra la información general sobre una comarca seleccionada,
+  incluyendo imagen, nombre, capital y descripción.
+*/
 
 class InfoComarcaGeneral extends StatelessWidget {
-  const InfoComarcaGeneral({super.key});
+  final String comarcaName; // nombre dinámico recibido
+
+  const InfoComarcaGeneral({super.key, required this.comarcaName});
 
   @override
   Widget build(BuildContext context) {
-    Comarca comarca = RepositoryEjemploAntiguo.obtenerInfoComarca();
+    // Obtenemos la comarca desde el repositorio
+    final Comarca? comarca = RepositoryEjemplo.obtenerInfoComarca(comarcaName);
 
+    // Si no se encuentra la comarca, mostramos un mensaje de error
+    if (comarca == null) {
+      return Scaffold(
+        appBar: AppBar(title: const Text("Comarca no trobada")),
+        body: const Center(
+          child: Text(
+            "No s'ha trobat la comarca especificada.",
+            style: TextStyle(fontSize: 18),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    }
+
+    // Si la comarca existe, mostramos su información
     return Scaffold(
+      appBar: AppBar(
+        title: Text(comarca.comarca),
+      ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(comarca.img ?? ""),
-            const SizedBox(height: 35),
-
+            Image.network(comarca.img ?? "", width: double.infinity, fit: BoxFit.cover),
+            const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 12),
-              child: SizedBox(
-                width: double.infinity,
-                child: Text(
-                  comarca.comarca,
-                  style: const TextStyle(
-                    fontSize: 28
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(comarca.comarca, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
             ),
-
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 12, top: 5),
-              child: SizedBox(
-                width: double.infinity,
-                child: Text(
-                  "Capital: ${comarca.capital}",
-                  style: const TextStyle(
-                    fontSize: 22
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              child: Text("Capital: ${comarca.capital ?? 'Desconeguda'}", style: const TextStyle(fontSize: 22)),
             ),
-
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 12, top: 10),
-              child: Text(
-                comarca.desc ?? "",
-                style: const TextStyle(
-                  fontSize: 18
-                ),
-                textAlign: TextAlign.left,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Text(comarca.desc ?? "", style: const TextStyle(fontSize: 18, height: 1.4), textAlign: TextAlign.justify),
             ),
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0, // estamos en informacio general
+        onTap: (index) {
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => InfoComarcaDetall(comarcaName: comarcaName)),
+            );
+          }
+        },
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.info), label: "Informació general"),
+          BottomNavigationBarItem(icon: Icon(Icons.wb_sunny), label: "Informació detallada"),
+        ],
+      ),
     );
   }
-  // TO-DO
-    // Añadir la información siguiente sobre la comarca:
-    // Imagen, nombre, capital y descripción, de forma similar a como se muestra en el enunciado
-
-    // Podéis utilizar los widgets y contenedores que consideréis oportunos (Containers, SingleChildScrollView, Columns, etc)
-    // Debéis tener en cuenta no sobrepasar los límites y dibujar fuera del espacio disponible
-    // Para comprobar que no os salís, podéis probar a girar el dispositivo (si lo estáis haciendo sobre Android)
-
 }
-
-
-  
-
-  

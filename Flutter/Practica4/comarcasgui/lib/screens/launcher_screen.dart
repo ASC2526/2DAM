@@ -1,65 +1,27 @@
-import 'package:comarcasgui/screens/comarcas_screen.dart';
-import 'package:comarcasgui/screens/infocomarca_detall.dart';
-import 'package:comarcasgui/screens/infocomarca_general.dart';
-import 'package:comarcasgui/screens/provincias_screen.dart';
 import 'package:flutter/material.dart';
+import 'provincias_screen.dart';
 
 class LauncherScreen extends StatelessWidget {
-  const LauncherScreen({
-    super.key,
-  });
-
+  const LauncherScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          ElevatedButton(
+    return Scaffold(
+      appBar: AppBar(title: const Text('Launcher')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
               onPressed: () {
-                Navigator.push<void>(
+                Navigator.push(
                   context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const ProvinciasScreen(),
-                  ),
+                  MaterialPageRoute(builder: (context) => const ProvinciasScreen()),
                 );
               },
-              child: const Text("Pantalla Provincias")),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push<void>(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const ComarcasScreen(provincia: 'Alacant',),
-                  ),
-                );
-              },
-              child: const Text("Pantalla Comarcas")),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push<void>(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) =>
-                        const InfoComarcaGeneral(comarcaNom: 'La Marina Alta'),
-                  ),
-                );
-              },
-              child: const Text(
-                  "Pantalla con información \n general de la comarca.")),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push<void>(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) =>
-                        const InfoComarcaDetall(),
-                  ),
-                );
-              },
-              child: const Text(
-                  "Pantalla con información \n detallada de la comarca"))
-        ],
+              child: const Text('Ir a Provincias'),
+            ),
+          ],
+        ),
       ),
     );
   }

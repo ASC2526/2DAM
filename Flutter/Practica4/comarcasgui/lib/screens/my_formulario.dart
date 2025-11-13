@@ -1,5 +1,5 @@
+import 'package:comarcasgui/screens/provincias_screen.dart';
 import 'package:flutter/material.dart';
-import 'launcher_screen.dart';
 
 class MyFormulario extends StatefulWidget {
   const MyFormulario({super.key});
@@ -104,7 +104,7 @@ class _MyFormularioState extends State<MyFormulario> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const LauncherScreen(),
+                          builder: (context) => const ProvinciasScreen(),
                         ),
                       );
                     } else {
