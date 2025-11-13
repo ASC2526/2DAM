@@ -3,76 +3,122 @@ import 'package:comarcasgui/models/comarca.dart';
 import 'package:comarcasgui/repository/repository_ejemplo.dart';
 import 'infocomarca_detall.dart';
 
-/* 
-  Pantalla InfoComarcaGeneral:
-  Muestra la información general sobre una comarca seleccionada,
-  incluyendo imagen, nombre, capital y descripción.
-*/
-
 class InfoComarcaGeneral extends StatelessWidget {
-  final String comarcaName; // nombre dinámico recibido
+  final String comarca;
 
-  const InfoComarcaGeneral({super.key, required this.comarcaName});
+  const InfoComarcaGeneral({super.key, required this.comarca});
 
   @override
   Widget build(BuildContext context) {
-    // Obtenemos la comarca desde el repositorio
-    final Comarca? comarca = RepositoryEjemplo.obtenerInfoComarca(comarcaName);
+    Comarca? comarca = RepositoryEjemplo.obtenerInfoComarca(this.comarca);
 
-    // Si no se encuentra la comarca, mostramos un mensaje de error
     if (comarca == null) {
-      return Scaffold(
-        appBar: AppBar(title: const Text("Comarca no trobada")),
-        body: const Center(
-          child: Text(
-            "No s'ha trobat la comarca especificada.",
-            style: TextStyle(fontSize: 18),
-            textAlign: TextAlign.center,
-          ),
-        ),
+      return const Scaffold(
+        body: Center(child: Text("No se ha encontrado la comarca")),
       );
     }
 
-    // Si la comarca existe, mostramos su información
     return Scaffold(
-      appBar: AppBar(
-        title: Text(comarca.comarca),
-      ),
+      appBar: AppBar(title: const Text('Informació General', 
+      style: TextStyle(fontFamily: 'LeckerliOne', fontSize: 30, fontWeight: FontWeight.bold),)),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(comarca.img ?? "", width: double.infinity, fit: BoxFit.cover),
-            const SizedBox(height: 20),
+            Image.network(comarca.img ?? ""),
+            const SizedBox(height: 25),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(comarca.comarca, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+              child: Text(
+                comarca.comarca,
+                style: const TextStyle(fontSize: 28)
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              child: Text("Capital: ${comarca.capital ?? 'Desconeguda'}", style: const TextStyle(fontSize: 22)),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+              child: Text(
+                "Capital: ${comarca.capital}",
+                style: const TextStyle(fontSize: 22),
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Text(comarca.desc ?? "", style: const TextStyle(fontSize: 18, height: 1.4), textAlign: TextAlign.justify),
+              padding: const EdgeInsets.all(20),
+              child: Text(comarca.desc ?? "", style: const TextStyle(fontSize: 18)),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0, // estamos en informacio general
-        onTap: (index) {
-          if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => InfoComarcaDetall(comarcaName: comarcaName)),
-            );
-          }
-        },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.info), label: "Informació general"),
-          BottomNavigationBarItem(icon: Icon(Icons.wb_sunny), label: "Informació detallada"),
+      bottomNavigationBar: _BottomMenu(
+        comarcaNombre: this.comarca,
+        seleccionado: 0,
+      ),
+    );
+  }
+}
+
+class _BottomMenu extends StatelessWidget {
+  final String comarcaNombre;
+  final int seleccionado;
+
+  const _BottomMenu({required this.comarcaNombre, required this.seleccionado});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 70,
+      margin: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.blue.shade50,
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _menuItem(
+            context,
+            icon: Icons.info,
+            texto: "General",
+            activo: seleccionado == 0,
+            onTap: () {},
+          ),
+          _menuItem(
+            context,
+            icon: Icons.wb_sunny,
+            texto: "Detall",
+            activo: seleccionado == 1,
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => InfoComarcaDetall(comarcaName: comarcaNombre),
+                ),
+              );
+            },
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget _menuItem(BuildContext context,
+      {required IconData icon,
+      required String texto,
+      required bool activo,
+      required Function onTap}) {
+    return GestureDetector(
+      onTap: () => onTap(),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        decoration: activo
+            ? BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12))
+            : null,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 28, color: activo ? Colors.blue : Colors.black54),
+            Text(texto),
+          ],
+        ),
       ),
     );
   }

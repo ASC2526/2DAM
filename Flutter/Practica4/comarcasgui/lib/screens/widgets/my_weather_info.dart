@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class MyWeatherInfo extends StatelessWidget {
-  final String comarcaName;
 
-  const MyWeatherInfo({super.key, required this.comarcaName});
+  final String comarca;
+
+  const MyWeatherInfo({super.key, required this.comarca});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text('Oratge a $comarcaName', style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 12),
         _obtenerIconoTiempo("0"),
         const SizedBox(height: 12),
@@ -72,12 +72,24 @@ class MyWeatherInfo extends StatelessWidget {
     final lluvia = <String>{"61","63","65","66","67","80","81","82","95","96","99"};
     final neu = <String>{"71","73","75","77","85","86"};
 
-    if (sol.contains(value)) return Image.asset("assets/icons/png/soleado.png");
-    if (pocasNubes.contains(value)) return Image.asset("assets/icons/png/poco_nublado.png");
-    if (nubes.contains(value)) return Image.asset("assets/icons/png/nublado.png");
-    if (lluviaSuave.contains(value)) return Image.asset("assets/icons/png/lluvia_debil.png");
-    if (lluvia.contains(value)) return Image.asset("assets/icons/png/lluvia.png");
-    if (neu.contains(value)) return Image.asset("assets/icons/png/nieve.png");
+    if (sol.contains(value)) {
+      return Image.asset("assets/icons/png/soleado.png");
+    }
+    if (pocasNubes.contains(value)) {
+      return Image.asset("assets/icons/png/poco_nublado.png");
+    }
+    if (nubes.contains(value)) {
+      return Image.asset("assets/icons/png/nublado.png");
+    }
+    if (lluviaSuave.contains(value)) {
+      return Image.asset("assets/icons/png/lluvia_debil.png");
+    }
+    if (lluvia.contains(value)) {
+      return Image.asset("assets/icons/png/lluvia.png");
+    }
+    if (neu.contains(value)) {
+      return Image.asset("assets/icons/png/nieve.png");
+    }
     return Image.asset("assets/icons/png/poco_nublado.png");
   }
 }
