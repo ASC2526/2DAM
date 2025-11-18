@@ -1,20 +1,12 @@
 class Provincia {
-  late String nombre; // Declaramos el nombre , e indicamos que lo inicializaremos después
-  String? imagen; // La url de la imagen es nulable
+  late String nombre;
+  String? imagen;
 
-  /* 
-  Constructor con argumentos por nombre: 
-   - nombre es obligatorio, e 
-   - imagen opcional.
-  */
   Provincia({
     required this.nombre,
     this.imagen,
   });
 
-  /* 
-  Constructor con nombre a partir de un diccionario.
-  */
   Provincia.fromJSON(Map<String, dynamic> objecteJSON) {
     nombre = objecteJSON["provincia"] ?? "";
     imagen = objecteJSON["img"] ?? "";

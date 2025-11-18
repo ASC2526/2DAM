@@ -47,7 +47,7 @@ public class EscritorFicheroHolas {
         try {
             t.join();
         } catch (InterruptedException e) {
-            // nada
+            return;
         }
     }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:comarcasgui/repository/repository_ejemplo.dart';
 import 'infocomarca_general.dart';
+
 /*
   Pantalla ComarcasScreen:
-  Muestra la lista de comarcas de una provincia seleccionada.
-  Al pulsar una, navegamos a su información.
+  Muestra la lista de comarcas de una provincia seleccionada
+  Al pulsar una, navegamos a su información
 */
 class ComarcasScreen extends StatelessWidget {
   final String provincia;
@@ -16,8 +17,16 @@ class ComarcasScreen extends StatelessWidget {
     final List<dynamic> comarques = RepositoryEjemplo.obtenerComarcas(provincia);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Comarques de $provincia',
-      style: const TextStyle(fontFamily: 'LeckerliOne', fontSize: 30, fontWeight: FontWeight.bold),)),
+      appBar: AppBar(
+        title: Text(
+          'Comarques de $provincia',
+          style: const TextStyle(
+            fontFamily: 'LeckerliOne', 
+            fontSize: 30, 
+            fontWeight: FontWeight.bold
+          ),
+        ),
+      ),
       body: _creaListaComarcas(comarques, context),
     );
   }
@@ -29,12 +38,13 @@ class ComarcasScreen extends StatelessWidget {
         final comarca = comarques[index];
 
         return GestureDetector(
+          // uso el gestureDetector para detectar el toque sobre cada tarjeta
+          //y con navigator.push para que nos lleve a la pantalla de InfocomarcaGeneral pasando su nombre
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) =>
-                    InfoComarcaGeneral(comarca: comarca["comarca"]),
+                builder: (_) => InfoComarcaGeneral(comarca: comarca["comarca"]),
               ),
             );
           },
@@ -68,21 +78,26 @@ class ComarcaCard extends StatelessWidget {
             child: SizedBox(
               width: double.infinity,
               height: 180,
-              child: Image.network(img, fit: BoxFit.cover),
+              child: Image.network(
+                img,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
+
+          // uso Theme más sombras para que la imagen se vea legible
           Positioned(
             left: 12,
             bottom: 12,
             child: Text(
               comarca,
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    fontSize: 20,
-                    color: Colors.white,
-                    shadows: const [
-                      Shadow(color: Colors.black, blurRadius: 5),
-                    ],
-                  ),
+                fontSize: 20,
+                color: Colors.white,
+                shadows: const [
+                  Shadow(color: Colors.black, blurRadius: 5),
+                ],
+              ),
             ),
           )
         ],
