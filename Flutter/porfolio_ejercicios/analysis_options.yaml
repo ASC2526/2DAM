@@ -1,0 +1,17 @@
+include: package:flutter_lints/flutter.yaml
+linter:
+  rules:
+    prefer_const_constructors: false
+    prefer_final_fields: false
+    use_key_in_widget_constructors: false
+    prefer_const_literals_to_create_immutables: false
+    prefer_const_constructors_in_immutables: false
+    avoid_print: false
+
+
+analyzer:
+  errors:
+    # Especifica el diagnóstico 'unused_import' y su severidad
+    # Los valores posibles son: ignore, info, warning, error
+    # CUIDADO: Esto quita los errores de imports que no son utilizados, puede ensuciar el código final
+    unused_import: ignore
