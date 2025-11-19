@@ -1,0 +1,7 @@
+C:\Users\Jesus\OneDrive\Documents\2024\PSP\Examen T1\Modelo A\PartePractica\C#\bin\Debug\Ejercicios.exe.config
+C:\Users\Jesus\OneDrive\Documents\2024\PSP\Examen T1\Modelo A\PartePractica\C#\bin\Debug\Ejercicios.exe
+C:\Users\Jesus\OneDrive\Documents\2024\PSP\Examen T1\Modelo A\PartePractica\C#\bin\Debug\Ejercicios.pdb
+C:\Users\Jesus\OneDrive\Documents\2024\PSP\Examen T1\Modelo A\PartePractica\C#\obj\Debug\Ejercicios.csprojAssemblyReference.cache
+C:\Users\Jesus\OneDrive\Documents\2024\PSP\Examen T1\Modelo A\PartePractica\C#\obj\Debug\Ejercicios.csproj.CoreCompileInputs.cache
+C:\Users\Jesus\OneDrive\Documents\2024\PSP\Examen T1\Modelo A\PartePractica\C#\obj\Debug\Ejercicios.exe
+C:\Users\Jesus\OneDrive\Documents\2024\PSP\Examen T1\Modelo A\PartePractica\C#\obj\Debug\Ejercicios.pdb
