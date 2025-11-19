@@ -19,7 +19,7 @@ public class Log {
         }
     }
 
-    public void escribir (int id, String cadena){
+    public synchronized void escribir (int id, String cadena){
 
         // Escribimos en el fichero el id y la fecha y hora actual
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss yyyy/MM/dd ");
