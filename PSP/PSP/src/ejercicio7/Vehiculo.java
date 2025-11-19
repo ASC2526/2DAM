@@ -5,24 +5,33 @@ public class Vehiculo {
     private Bateria bateria = null;
     private Carroceria carroceria = null;
 
-    public void ensamblarMotor(Motor motor) {
-        if(carroceria != null){
-            this.motor = motor;
-        } else {
-            System.out.println("Error, no se puede ensamblar el motor sin carrocería");
+    public synchronized void ensamblarMotor(Motor motor) {
+        while (carroceria == null)
+        {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+        this.motor = motor;
     }
 
-    public void ensamblarBateria(Bateria bateria) {
-        if(carroceria != null){
-            this.bateria = bateria;
-        } else {
-            System.out.println("Error, no se puede ensamblar la batería sin carrocería");
+    public synchronized void ensamblarBateria(Bateria bateria) {
+        while (carroceria == null)
+        {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+        this.bateria = bateria;
     }
 
-    public void ensamblarCarroceria(Carroceria carroceria) {
+    public synchronized void ensamblarCarroceria(Carroceria carroceria) {
         this.carroceria = carroceria;
+        notifyAll();
     }
 
     public Motor getMotor() {
