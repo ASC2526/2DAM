@@ -71,7 +71,7 @@ class InfoComarcaGeneral extends StatelessWidget {
         ),
       ),
 
-      // menú inferior que permite navegar entre General ↔ Detall
+      // menú inferior que permite navegar entre General y Detall
       bottomNavigationBar: _BottomMenu(
         comarcaNombre: this.comarca,
         seleccionado: 0, // estamos en la pestaña "General"
