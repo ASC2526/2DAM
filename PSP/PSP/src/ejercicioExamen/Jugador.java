@@ -4,7 +4,8 @@ public class Jugador implements Runnable {
     private String nombre;
     private Pelota pelota;
     private Jugador siguiente;
-    public static boolean[] detener = new boolean[]{false};
+    public static boolean detener = false;
+
 
 
     public Jugador(String nombre, Pelota pelota) {
@@ -22,27 +23,25 @@ public class Jugador implements Runnable {
     public void setSiguienteJugador(Jugador jugador) {
         this.siguiente = jugador;
     }
-    private boolean getTienePelota() {
-        return tienePelota;
-    }
 
     @Override
     public void run() {
-        while(!detener[0]) {
+        while(!detener) {
             synchronized (pelota) {
-                while(!tienePelota && !detener[0]) {
+                while(!tienePelota && !detener) {
                     try {
                         pelota.wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
+                if (detener) { return; }
             }
             System.out.println(nombre + ": " + pelota.toString());
             try {
                 Thread.sleep(4000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                return;
             }
             if(siguiente != null){
                 this.pasarPelota();

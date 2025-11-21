@@ -39,7 +39,8 @@ public class Main {
         sc.nextLine();
         sc.nextLine();
 
-        Jugador.detener[0] = true;
+        Jugador.detener = true;
+
 
         synchronized (pelota) {
             pelota.notifyAll();
