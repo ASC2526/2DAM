@@ -25,7 +25,6 @@ namespace Ejercicio11
 
         public async Task SofreirIngredientes(Paella p, List<string> i)
         {
-            // Espera activa hasta que la paella esté caliente
             while (!p.Caliente)
                 await Task.Delay(100);
 

@@ -60,7 +60,6 @@ public class Main {
                 // ignorar
             }
         }
-
         // Cuando finCarrera == true, garantizamos que todos los hilos despierten
         synchronized (testigo) {
             testigo.notifyAll();
