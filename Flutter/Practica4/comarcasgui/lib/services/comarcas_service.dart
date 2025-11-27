@@ -55,23 +55,25 @@ class ComarcasService {
   }
 
   static Future<List<dynamic>> obtenerComarcas(String provincia) async {
-    try {
-      String url =
-          "https://node-comarques-rest-server-production.up.railway.app/api/comarques/comarquesAmbImatge/$provincia";
-      var data = await http.get(Uri.parse(url));
+  try {
+    final url =
+        "https://node-comarques-rest-server-production.up.railway.app/api/comarques/comarquesAmbImatge/$provincia";
+    final data = await http.get(Uri.parse(url));
 
-      if (data.statusCode == 200) {
-        String body = utf8.decode(data.bodyBytes);
-        final bodyJSON = jsonDecode(body) as List;
-        return bodyJSON; 
-      } else {
-        return [];
-      }
-    } catch (except) {
-      print(except.toString());
-      return [];
+    if (data.statusCode == 200) {
+      final body = utf8.decode(data.bodyBytes);
+      final bodyJSON = jsonDecode(body) as List;
+
+      return bodyJSON;
     }
+
+    return [];
+  } catch (e) {
+    print("Error: $e");
+    return [];
   }
+}
+
 
   static Future<Comarca?> infoComarca(String comarca) async {
     try {

@@ -1,6 +1,6 @@
+import 'package:comarcasgui/repository/repository_comarcas.dart';
+import 'package:comarcasgui/screens/widgets/my_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:comarcasgui/models/comarca.dart';
-import 'package:comarcasgui/repository/repository_ejemplo.dart';
 import 'package:comarcasgui/screens/widgets/my_weather_info.dart';
 import 'infocomarca_general.dart';
 
@@ -11,43 +11,51 @@ class InfoComarcaDetall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Comarca? comarca = RepositoryEjemplo.obtenerInfoComarca(comarcaName);
-
-    if (comarca == null) {
-      return const Scaffold(body: Center(child: Text("Error al cargar la comarca")));
-    }
-
     return Scaffold(
       appBar: AppBar(title: const Text('Població i oratge', 
       style: TextStyle(fontFamily: 'LeckerliOne', fontSize: 30, fontWeight: FontWeight.bold),)),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            MyWeatherInfo(comarca: comarcaName),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+      body: FutureBuilder(
+        future: RepositoryComarcas.obtenerInfoComarca(comarcaName),
+        builder: (context, snapshot) {
+
+          if(snapshot.connectionState == ConnectionState.waiting) {
+            return const MyCircularProgressIndicator();
+          }
+
+          if (!snapshot.hasData || snapshot.data == null) {
+            return const Center(child: Text("Error carregant comarca"));
+          }
+          final info = snapshot.data!;
+          return SingleChildScrollView(
+            child: Column(
               children: [
-                const Column(children: [
-                  Text("Població:", style: TextStyle(fontSize: 18)),
-                  SizedBox(height: 8),
-                  Text("Latitud:", style: TextStyle(fontSize: 18)),
-                  SizedBox(height: 8),
-                  Text("Longitud:", style: TextStyle(fontSize: 18)),
-                ]),
-                const SizedBox(width: 20),
-                Column(children: [
-                  Text("${comarca.poblacion}", style: const TextStyle(fontSize: 18)),
-                  const SizedBox(height: 8),
-                  Text("${comarca.latitud}", style: const TextStyle(fontSize: 18)),
-                  const SizedBox(height: 8),
-                  Text("${comarca.longitud}", style: const TextStyle(fontSize: 18)),
-                ]),
+                const SizedBox(height: 20),
+                MyWeatherInfo(latitud: info.latitud!, longitud : info.longitud!),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Column(children: [
+                      Text("Població:", style: TextStyle(fontSize: 18)),
+                      SizedBox(height: 8),
+                      Text("Latitud:", style: TextStyle(fontSize: 18)),
+                      SizedBox(height: 8),
+                      Text("Longitud:", style: TextStyle(fontSize: 18)),
+                    ]),
+                    const SizedBox(width: 20),
+                    Column(children: [
+                      Text("${info.poblacion}", style: const TextStyle(fontSize: 18)),
+                      const SizedBox(height: 8),
+                      Text("${info.latitud}", style: const TextStyle(fontSize: 18)),
+                      const SizedBox(height: 8),
+                      Text("${info.longitud}", style: const TextStyle(fontSize: 18)),
+                    ]),
+                  ],
+                ),
               ],
             ),
-          ],
-        ),
+          );
+        }
       ),
       bottomNavigationBar: _BottomMenu(
         comarcaNombre: comarcaName,
