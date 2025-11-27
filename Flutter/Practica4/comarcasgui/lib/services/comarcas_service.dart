@@ -54,8 +54,6 @@ class ComarcasService {
     }
   }
 
-
-
   static Future<List<dynamic>> obtenerComarcas(String provincia) async {
     try {
       String url =
@@ -69,8 +67,8 @@ class ComarcasService {
       } else {
         return [];
       }
-    } catch (e) {
-      print("\x1B[31mError: $e\x1B[0m");
+    } catch (except) {
+      print(except.toString());
       return [];
     }
   }
@@ -100,8 +98,9 @@ class ComarcasService {
         }
       }
   
-    return null;} catch (e) {
-    print("\x1B[31mError: $e\x1B[0m");
+    return null;
+    } catch (except) {
+    print(except.toString());
     return Comarca(comarca: '');
   }}
 

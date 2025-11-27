@@ -31,19 +31,17 @@ class ComarcasScreen extends StatelessWidget {
       body: FutureBuilder(
         future: RepositoryComarcas.obtenerComarcas(provincia),
         builder: (context, snapshot) {
-          // mientras el Future no se complete, mostramos el indicador
+
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const MyCircularProgressIndicator();
           }
 
-          // si hay error
           if (snapshot.hasError) {
-            return const Center(child: Text("Error carregant comarques"));
+            return const Center(child: Text("Error cargando comarcas"));
           }
 
-          // si no hay datos
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text("No s'han trobat comarques"));
+            return const Center(child: Text("No se encontraron comarcas"));
           }
 
           final comarques = snapshot.data as List<dynamic>;
@@ -58,7 +56,7 @@ class ComarcasScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => InfoComarcaGeneral(
+                      builder: (context) => InfoComarcaGeneral(
                         comarca: comarca["comarca"],
                       ),
                     ),
@@ -90,13 +88,18 @@ class ComarcaCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-      clipBehavior: Clip.antiAlias, 
       child: Stack(
         children: [
-          Ink.image(
-            image: NetworkImage(img),
-            height: 180,
-            fit: BoxFit.cover,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: SizedBox(
+              width: double.infinity,
+              height: 180,
+              child: Image.network(
+                img,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
           Positioned(
             left: 12,

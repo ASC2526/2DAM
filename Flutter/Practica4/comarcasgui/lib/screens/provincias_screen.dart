@@ -1,3 +1,4 @@
+import 'package:comarcasgui/screens/widgets/my_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:comarcasgui/models/provincia.dart';
 import 'package:comarcasgui/repository/repository_comarcas.dart';
@@ -11,15 +12,13 @@ class ProvinciasScreen extends StatelessWidget {
     return Scaffold( 
       body: Center(
         child: FutureBuilder<List<Provincia>>(
-          future: RepositoryComarcas.obtenerProvincias(), // ahora obtenemos las provincias desde internet
+          future: RepositoryComarcas.obtenerProvincias(), // obtengo las provincias desde el repository que llama al comarcas service
           builder: (context, snapshot) {
 
-            // mientras carga mostramos un indicador
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return const MyCircularProgressIndicator();
             }
 
-            // si hay error o no hay datos
             if (!snapshot.hasData) {
               return const Text("Error cargando provincias");
             }
@@ -51,7 +50,7 @@ List<Widget> _creaListaProvincias(
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => ComarcasScreen(
+              builder: (context) => ComarcasScreen(
                 provincia: provincia.nombre,
               ),
             ),
