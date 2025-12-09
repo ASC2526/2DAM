@@ -1,43 +1,39 @@
 package ejercicio3;
 
 public class Cuerda {
+
     private int pañueloPos = 0;
-    public int FuerzaTotalA = 0;
-    public int FuerzaTotalB = 0;
+    private long fuerzaA = 0;
+    private long fuerzaB = 0;
 
     public Cuerda() {}
-    public void synchronized Tirar(int fuerza, LadoEquipo lado)
-    {
-        if(lado == LadoEquipo.A_IZQUIERDO)
-        {
-            FuerzaTotalA += fuerza;
-        }
-        if(lado == LadoEquipo.B_DERECHO)
-        {
-            FuerzaTotalB += fuerza;
-        }
-        pañueloPos = (FuerzaTotalA - FuerzaTotalB) / 100000;
+
+    public synchronized void Tirar(int fuerza, LadoEquipo lado) {
+
+        if (lado == LadoEquipo.A_IZQUIERDO)
+            fuerzaA += fuerza;
+        else
+            fuerzaB += fuerza;
+
+        pañueloPos = (int)((fuerzaA - fuerzaB) / 100000);
+
+        if (pañueloPos < -50) pañueloPos = -50;
+        if (pañueloPos > 50) pañueloPos = 50;
+
+        notifyAll();
     }
 
-    public int GetPañueloPos(){
+    public synchronized int GetPañueloPos() {
         return pañueloPos;
     }
-    public synchronized boolean HayGanador()
-    {
-        if (pañueloPos == -50 || pañueloPos == 50)
-            return true;
-        return false;
-    }
-    public synchronized LadoEquipo ObtenerGanador()
-    {
-        if (HayGanador())
-        {
-            if (pañueloPos == -50)
-                return LadoEquipo.A_IZQUIERDO;
 
-            if (pañueloPos == 50)
-                return LadoEquipo.B_DERECHO;
-        }
+    public synchronized boolean HayGanador() {
+        return pañueloPos == -50 || pañueloPos == 50;
+    }
+
+    public synchronized LadoEquipo ObtenerGanador() {
+        if (pañueloPos == -50) return LadoEquipo.A_IZQUIERDO;
+        if (pañueloPos == 50) return LadoEquipo.B_DERECHO;
         return null;
     }
 }

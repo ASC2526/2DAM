@@ -39,7 +39,7 @@ class _MyWeatherInfoState extends State<MyWeatherInfo> {
         }
 
         if (!snapshot.hasData) {
-          return const Text("Error carregant el clima");
+          return const Text("Error cargando el clima");
         }
 
         final data = snapshot.data;

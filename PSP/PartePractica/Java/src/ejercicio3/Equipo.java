@@ -2,26 +2,34 @@ package ejercicio3;
 
 import java.util.Random;
 
-public class Equipo implements Runnable{
-    public Cuerda cuerda;
-    public LadoEquipo ladoEquipo;
+public class Equipo implements Runnable {
 
-    public Equipo(Cuerda cuerda, LadoEquipo ladoEquipo) {
+    private Cuerda cuerda;
+    private LadoEquipo lado;
+    private Random rand = new Random();
+
+    public Equipo(Cuerda cuerda, LadoEquipo lado) {
         this.cuerda = cuerda;
-        this.ladoEquipo = ladoEquipo;
+        this.lado = lado;
     }
+
     @Override
     public void run() {
-        Random random = new Random();
-        while(!cuerda.HayGanador())
-        {
-            int fuerzaAplicada = random.nextInt(1)+1;
-            cuerda.Tirar();
-            synchronized (cuerda)
-            {
-                cuerda.notify();
+        while (true) {
+            synchronized (cuerda) {
+                if (cuerda.HayGanador())
+                    return;
+
+                int fuerza = rand.nextInt(100000);
+
+                cuerda.Tirar(fuerza, lado);
             }
 
+            try {
+                Thread.sleep(rand.nextInt(200) + 100);
+            } catch (InterruptedException e) {
+                return;
+            }
         }
     }
 }
