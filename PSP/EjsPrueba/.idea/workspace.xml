@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bac4c288-daa8-4faf-9735-feed43f12610" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Flutter/Practica4/comarcasgui/lib/screens/widgets/my_weather_info.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../Flutter/Practica4/comarcasgui/lib/screens/widgets/my_weather_info.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PartePractica/Java/src/ejercicio3/Cuerda.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PartePractica/Java/src/ejercicio3/Cuerda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PartePractica/Java/src/ejercicio3/Equipo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PartePractica/Java/src/ejercicio3/Equipo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PartePractica/Java/src/ejercicio3/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PartePractica/Java/src/ejercicio3/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/.vs/Ejercicio4/FileContentIndex/0e403c91-fa12-4e4b-900f-3fccd2566906.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/.vs/Ejercicio4/FileContentIndex/dbeb17ab-6a30-485d-a905-866b83793b3d.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/.vs/Ejercicio4/v17/.wsuo" beforeDir="false" afterPath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/.vs/Ejercicio4/v17/.wsuo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/.vs/Ejercicio4/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/.vs/Ejercicio4/v17/DocumentLayout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/.vs/VSWorkspaceState.json" beforeDir="false" afterPath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/.vs/VSWorkspaceState.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/.vs/slnx.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/.vs/slnx.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/obj/Debug/Ejercicio4.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../PartePractica/C#/Ejercicio4/obj/Debug/Ejercicio4.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PartePractica/Java/src/ejPruebaRestaurante/Mostrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PartePractica/Java/src/ejPruebaRestaurante/Mostrador.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,39 +21,39 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "ASC2526"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ASC2526&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/ASC2526/2DAM.git",
-    "accountId": "8aa2295a-db94-4886-ac51-fc8b7a9449b0"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ASC2526/2DAM.git&quot;,
+    &quot;accountId&quot;: &quot;8aa2295a-db94-4886-ac51-fc8b7a9449b0&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="36WLF2NEzNkrDMhTGjalETkAyCK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Usuario/GitHub/2DAM/PSP/EjsPrueba",
-    "to.speed.mode.migration.done": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Usuario/GitHub/2DAM/PSP/EjsPrueba&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

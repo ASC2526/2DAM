@@ -10,7 +10,7 @@ public class Mostrador {
 
     public Mostrador() {}
 
-    public int getNumPedidosRealizados() {
+    public synchronized int getNumPedidosRealizados() {
         return numPedidosRealizados;
     }
 

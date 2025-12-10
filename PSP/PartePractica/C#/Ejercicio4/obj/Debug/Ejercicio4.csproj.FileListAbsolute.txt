@@ -5,3 +5,10 @@ C:\Users\Jesus\OneDrive - Conselleria d'Educació\2025\PSP\U1\Exámenes\Modelo B
 C:\Users\Jesus\OneDrive - Conselleria d'Educació\2025\PSP\U1\Exámenes\Modelo B\PartePracticaResuelta\C#\Ejercicio4\obj\Debug\Ejercicio4.csproj.CoreCompileInputs.cache
 C:\Users\Jesus\OneDrive - Conselleria d'Educació\2025\PSP\U1\Exámenes\Modelo B\PartePracticaResuelta\C#\Ejercicio4\obj\Debug\Ejercicio4.exe
 C:\Users\Jesus\OneDrive - Conselleria d'Educació\2025\PSP\U1\Exámenes\Modelo B\PartePracticaResuelta\C#\Ejercicio4\obj\Debug\Ejercicio4.pdb
+C:\Users\Usuario\GitHub\2DAM\PSP\PartePractica\C#\Ejercicio4\bin\Debug\Ejercicio4.exe.config
+C:\Users\Usuario\GitHub\2DAM\PSP\PartePractica\C#\Ejercicio4\bin\Debug\Ejercicio4.exe
+C:\Users\Usuario\GitHub\2DAM\PSP\PartePractica\C#\Ejercicio4\bin\Debug\Ejercicio4.pdb
+C:\Users\Usuario\GitHub\2DAM\PSP\PartePractica\C#\Ejercicio4\obj\Debug\Ejercicio4.csproj.AssemblyReference.cache
+C:\Users\Usuario\GitHub\2DAM\PSP\PartePractica\C#\Ejercicio4\obj\Debug\Ejercicio4.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\GitHub\2DAM\PSP\PartePractica\C#\Ejercicio4\obj\Debug\Ejercicio4.exe
+C:\Users\Usuario\GitHub\2DAM\PSP\PartePractica\C#\Ejercicio4\obj\Debug\Ejercicio4.pdb

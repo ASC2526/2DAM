@@ -10,40 +10,52 @@ namespace Ejercicio4
     {
         static async Task Main(string[] args)
         {
-            int res = ContarPrimos(2000000);
-            Console.WriteLine("¡Hola mundo!"); // Queremos que esta línea se ejecute mientras se calculan los primos
-            Console.WriteLine(res); // Queremos que esta línea se ejecute cuando el cálculo haya finalizado
+            Task<string> t1 = CargarTemperaturaAsync();
+            Task<string> t2 = CargarHumedadAsync();
+            Task<string> t3 = CargarPresionAsync();
+
+            Console.WriteLine("Este mensaje debería aparecer mientras se cargan los sensores...");
+
+            string temperatura = await t1;
+            string humedad = await t2;
+            string presion = await t3;
+
+            Console.WriteLine("Temperatura: " + temperatura);
+            Console.WriteLine("Humedad: " + humedad);
+            Console.WriteLine("Presión: " + presion);
+
             Console.ReadKey();
-
         }
 
- 
-        public static int ContarPrimos(int limite)
+        public static string CargarTemperatura()
         {
-            int contador = 0;
-
-            for (long i = 2; i < limite; i++)
-            {
-                if (EsPrimo(i))
-                {
-                    contador++;
-                }
-            }
-
-            return contador;
+            Task.Delay(2000).Wait();
+            return "22ºC";
         }
 
-        public static bool EsPrimo(long n)
+        public static Task<string> CargarTemperaturaAsync()
         {
-            if (n < 2) return false;
-            for (long i = 2; i * i <= n; i++)
-            {
-                if (n % i == 0)
-                {
-                    return false;
-                }
-            }
-            return true;
+            return Task.Run(() => CargarTemperatura());
+        }
+
+        public static string CargarHumedad()
+        {
+            Task.Delay(3000).Wait();
+            return "45%";
+        }
+
+        public static Task<string> CargarHumedadAsync()
+        {
+            return Task.Run(() => CargarHumedad());
+        }
+        public static string CargarPresion()
+        {
+            Task.Delay(1500).Wait();
+            return "1013 hPa";
+        }
+        public static Task<string> CargarPresionAsync()
+        {
+            return Task.Run(() => CargarPresion());
         }
 
 
